@@ -23,7 +23,6 @@ CREATE TABLE IF NOT EXISTS `ums_admin` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(64) DEFAULT NULL,
   `password` varchar(64) DEFAULT NULL,
-  `icon` varchar(500) DEFAULT NULL COMMENT '头像',
   `email` varchar(100) DEFAULT NULL COMMENT '邮箱',
   `nick_name` varchar(200) DEFAULT NULL COMMENT '昵称',
   `note` varchar(500) DEFAULT NULL COMMENT '备注信息',
@@ -31,13 +30,14 @@ CREATE TABLE IF NOT EXISTS `ums_admin` (
   `login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
   `status` int(1) DEFAULT '1' COMMENT '帐号启用状态：0->禁用；1->启用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='后台用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='后台用户表';
 
--- 正在导出表  tiny.ums_admin 的数据：~2 rows (大约)
+-- 正在导出表  tiny.ums_admin 的数据：~3 rows (大约)
 /*!40000 ALTER TABLE `ums_admin` DISABLE KEYS */;
-INSERT INTO `ums_admin` (`id`, `username`, `password`, `icon`, `email`, `nick_name`, `note`, `create_time`, `login_time`, `status`) VALUES
-	(1, 'test', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'test@qq.com', '测试账号', NULL, '2018-09-29 13:55:30', '2018-09-29 13:55:39', 1),
-	(3, 'admin', '$2a$10$WtitVo8mHoBPPlF6W6Vf5.Z14gBzed0/os6jXkZ8yLbwZu6iDl8YG', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', '2019-04-20 12:45:16', 1);
+INSERT INTO `ums_admin` (`id`, `username`, `password`, `email`, `nick_name`, `note`, `create_time`, `login_time`, `status`) VALUES
+	(1, 'test', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'test@qq.com', '测试账号', NULL, '2018-09-29 13:55:30', '2018-09-29 13:55:39', 1),
+	(3, 'admin', '$2a$10$WtitVo8mHoBPPlF6W6Vf5.Z14gBzed0/os6jXkZ8yLbwZu6iDl8YG', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', '2019-04-20 12:45:16', 1),
+	(16, 'test1', '$2a$10$hWsGqLq.OZloHYXDZgp2SevtkhSkaHxhc3bGfFUSKMk5rBkUMw7Ea', '1058680083@qq.com', 'Zhende Gu', NULL, '2020-10-20 14:32:58', '2020-10-20 14:38:17', 1);
 /*!40000 ALTER TABLE `ums_admin` ENABLE KEYS */;
 
 -- 导出  表 tiny.ums_admin_login_log 结构
@@ -50,16 +50,48 @@ CREATE TABLE IF NOT EXISTS `ums_admin_login_log` (
   `address` varchar(100) DEFAULT NULL,
   `user_agent` varchar(100) DEFAULT NULL COMMENT '浏览器登录类型',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=290 DEFAULT CHARSET=utf8 COMMENT='后台用户登录日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=322 DEFAULT CHARSET=utf8 COMMENT='后台用户登录日志表';
 
--- 正在导出表  tiny.ums_admin_login_log 的数据：~3 rows (大约)
+-- 正在导出表  tiny.ums_admin_login_log 的数据：~37 rows (大约)
 /*!40000 ALTER TABLE `ums_admin_login_log` DISABLE KEYS */;
 INSERT INTO `ums_admin_login_log` (`id`, `admin_id`, `create_time`, `ip`, `address`, `user_agent`) VALUES
 	(285, 3, '2020-08-24 14:05:21', '0:0:0:0:0:0:0:1', NULL, NULL),
 	(286, 10, '2020-08-24 14:05:39', '0:0:0:0:0:0:0:1', NULL, NULL),
 	(287, 3, '2020-10-14 12:06:36', '0:0:0:0:0:0:0:1', NULL, NULL),
 	(288, 3, '2020-10-14 12:06:59', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(289, 3, '2020-10-14 12:38:03', '0:0:0:0:0:0:0:1', NULL, NULL);
+	(289, 3, '2020-10-14 12:38:03', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(290, 3, '2020-10-17 16:40:32', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(291, 3, '2020-10-17 16:45:17', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(292, 3, '2020-10-17 16:45:18', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(293, 3, '2020-10-17 16:46:48', '127.0.0.1', NULL, NULL),
+	(294, 3, '2020-10-17 16:50:53', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(295, 3, '2020-10-17 16:52:19', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(296, 3, '2020-10-17 16:53:58', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(297, 3, '2020-10-17 17:01:19', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(298, 3, '2020-10-17 17:02:24', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(299, 3, '2020-10-17 17:08:09', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(300, 3, '2020-10-17 17:09:11', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(301, 3, '2020-10-17 17:12:33', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(302, 3, '2020-10-18 18:41:15', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(303, 3, '2020-10-18 19:52:56', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(304, 3, '2020-10-20 10:59:55', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(305, 3, '2020-10-20 12:21:49', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(306, 3, '2020-10-20 12:39:14', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(307, 3, '2020-10-20 13:16:31', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(308, 3, '2020-10-20 13:27:07', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(309, 3, '2020-10-20 13:54:10', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(310, 3, '2020-10-20 14:07:14', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(311, 3, '2020-10-20 14:17:57', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(312, 3, '2020-10-20 14:31:16', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(313, 16, '2020-10-20 14:34:15', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(314, 16, '2020-10-20 14:45:32', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(315, 16, '2020-10-20 14:57:59', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(316, 16, '2020-10-20 15:20:55', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(317, 16, '2020-10-20 15:23:41', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(318, 3, '2020-10-20 16:25:17', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(319, 16, '2020-10-20 16:25:17', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(320, 3, '2020-10-20 16:25:26', '0:0:0:0:0:0:0:1', NULL, NULL),
+	(321, 3, '2020-10-20 17:02:23', '0:0:0:0:0:0:0:1', NULL, NULL);
 /*!40000 ALTER TABLE `ums_admin_login_log` ENABLE KEYS */;
 
 -- 导出  表 tiny.ums_admin_role_relation 结构
@@ -69,9 +101,9 @@ CREATE TABLE IF NOT EXISTS `ums_admin_role_relation` (
   `admin_id` bigint(20) DEFAULT NULL,
   `role_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COMMENT='后台用户和角色关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='后台用户和角色关系表';
 
--- 正在导出表  tiny.ums_admin_role_relation 的数据：~9 rows (大约)
+-- 正在导出表  tiny.ums_admin_role_relation 的数据：~10 rows (大约)
 /*!40000 ALTER TABLE `ums_admin_role_relation` DISABLE KEYS */;
 INSERT INTO `ums_admin_role_relation` (`id`, `admin_id`, `role_id`) VALUES
 	(26, 3, 5),
@@ -82,7 +114,8 @@ INSERT INTO `ums_admin_role_relation` (`id`, `admin_id`, `role_id`) VALUES
 	(31, 8, 5),
 	(34, 12, 6),
 	(38, 13, 5),
-	(39, 10, 8);
+	(39, 10, 8),
+	(40, 16, 5);
 /*!40000 ALTER TABLE `ums_admin_role_relation` ENABLE KEYS */;
 
 -- 导出  表 tiny.ums_menu 结构
@@ -100,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `ums_menu` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='后台菜单表';
 
--- 正在导出表  tiny.ums_menu 的数据：~24 rows (大约)
+-- 正在导出表  tiny.ums_menu 的数据：~21 rows (大约)
 /*!40000 ALTER TABLE `ums_menu` DISABLE KEYS */;
 INSERT INTO `ums_menu` (`id`, `parent_id`, `create_time`, `title`, `level`, `sort`, `name`, `icon`, `hidden`) VALUES
 	(2, 1, '2020-02-02 14:51:50', '商品列表', 1, 0, 'product', 'product-list', 0),
@@ -138,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `ums_resource` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='后台资源表';
 
--- 正在导出表  tiny.ums_resource 的数据：~28 rows (大约)
+-- 正在导出表  tiny.ums_resource 的数据：~5 rows (大约)
 /*!40000 ALTER TABLE `ums_resource` DISABLE KEYS */;
 INSERT INTO `ums_resource` (`id`, `create_time`, `name`, `url`, `description`, `category_id`) VALUES
 	(25, '2020-02-07 16:47:34', '后台用户管理', '/admin/**', '', 4),
@@ -158,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `ums_resource_category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='资源分类表';
 
--- 正在导出表  tiny.ums_resource_category 的数据：~6 rows (大约)
+-- 正在导出表  tiny.ums_resource_category 的数据：~1 rows (大约)
 /*!40000 ALTER TABLE `ums_resource_category` DISABLE KEYS */;
 INSERT INTO `ums_resource_category` (`id`, `create_time`, `name`, `sort`) VALUES
 	(4, '2020-02-05 10:23:04', '权限模块', 0);
@@ -177,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `ums_role` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='后台用户角色表';
 
--- 正在导出表  tiny.ums_role 的数据：~4 rows (大约)
+-- 正在导出表  tiny.ums_role 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `ums_role` DISABLE KEYS */;
 INSERT INTO `ums_role` (`id`, `name`, `description`, `admin_count`, `create_time`, `status`, `sort`) VALUES
 	(5, '超级管理员', '拥有所有查看和操作功能', 0, '2020-02-02 15:11:05', 1, 0),
@@ -191,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `ums_role_menu_relation` (
   `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
   `menu_id` bigint(20) DEFAULT NULL COMMENT '菜单ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8 COMMENT='后台角色菜单关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8 COMMENT='后台角色菜单关系表';
 
 -- 正在导出表  tiny.ums_role_menu_relation 的数据：~50 rows (大约)
 /*!40000 ALTER TABLE `ums_role_menu_relation` DISABLE KEYS */;
@@ -241,11 +274,11 @@ INSERT INTO `ums_role_menu_relation` (`id`, `role_id`, `menu_id`) VALUES
 	(103, 7, 23),
 	(104, 7, 24),
 	(105, 7, 25),
-	(106, 8, 21),
-	(107, 8, 22),
-	(108, 8, 23),
-	(109, 8, 24),
-	(110, 8, 25);
+	(111, 8, 21),
+	(112, 8, 22),
+	(113, 8, 23),
+	(114, 8, 24),
+	(115, 8, 25);
 /*!40000 ALTER TABLE `ums_role_menu_relation` ENABLE KEYS */;
 
 -- 导出  表 tiny.ums_role_resource_relation 结构
@@ -255,9 +288,9 @@ CREATE TABLE IF NOT EXISTS `ums_role_resource_relation` (
   `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
   `resource_id` bigint(20) DEFAULT NULL COMMENT '资源ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=216 DEFAULT CHARSET=utf8 COMMENT='后台角色资源关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=226 DEFAULT CHARSET=utf8 COMMENT='后台角色资源关系表';
 
--- 正在导出表  tiny.ums_role_resource_relation 的数据：~57 rows (大约)
+-- 正在导出表  tiny.ums_role_resource_relation 的数据：~34 rows (大约)
 /*!40000 ALTER TABLE `ums_role_resource_relation` DISABLE KEYS */;
 INSERT INTO `ums_role_resource_relation` (`id`, `role_id`, `resource_id`) VALUES
 	(103, 2, 8),
@@ -265,34 +298,6 @@ INSERT INTO `ums_role_resource_relation` (`id`, `role_id`, `resource_id`) VALUES
 	(105, 2, 10),
 	(106, 2, 11),
 	(107, 2, 12),
-	(142, 5, 1),
-	(143, 5, 2),
-	(144, 5, 3),
-	(145, 5, 4),
-	(146, 5, 5),
-	(147, 5, 6),
-	(148, 5, 8),
-	(149, 5, 9),
-	(150, 5, 10),
-	(151, 5, 11),
-	(152, 5, 12),
-	(153, 5, 13),
-	(154, 5, 14),
-	(155, 5, 15),
-	(156, 5, 16),
-	(157, 5, 17),
-	(158, 5, 18),
-	(159, 5, 19),
-	(160, 5, 20),
-	(161, 5, 21),
-	(162, 5, 22),
-	(163, 5, 23),
-	(164, 5, 24),
-	(165, 5, 25),
-	(166, 5, 26),
-	(167, 5, 27),
-	(168, 5, 28),
-	(169, 5, 29),
 	(170, 1, 1),
 	(171, 1, 2),
 	(172, 1, 3),
@@ -312,11 +317,16 @@ INSERT INTO `ums_role_resource_relation` (`id`, `role_id`, `resource_id`) VALUES
 	(208, 7, 28),
 	(209, 7, 29),
 	(210, 7, 31),
-	(211, 8, 25),
-	(212, 8, 26),
-	(213, 8, 27),
-	(214, 8, 28),
-	(215, 8, 29);
+	(216, 5, 25),
+	(217, 5, 26),
+	(218, 5, 27),
+	(219, 5, 28),
+	(220, 5, 29),
+	(221, 8, 25),
+	(222, 8, 26),
+	(223, 8, 27),
+	(224, 8, 28),
+	(225, 8, 29);
 /*!40000 ALTER TABLE `ums_role_resource_relation` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

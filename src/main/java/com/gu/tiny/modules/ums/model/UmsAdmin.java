@@ -34,9 +34,6 @@ public class UmsAdmin implements Serializable {
 
     private String password;
 
-    @ApiModelProperty(value = "头像")
-    private String icon;
-
     @ApiModelProperty(value = "邮箱")
     private String email;
 
