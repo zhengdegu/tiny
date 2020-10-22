@@ -2,6 +2,7 @@ package com.gu.tiny.modules.ums.controller;
 
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.gu.tiny.common.annotation.Log;
 import com.gu.tiny.common.api.CommonPage;
 import com.gu.tiny.common.api.CommonResult;
 import com.gu.tiny.modules.ums.dto.UmsAdminLoginParam;
@@ -54,6 +55,7 @@ public class UmsAdminController {
         return CommonResult.success(umsAdmin);
     }
 
+    @Log("用户登录")
     @ApiOperation(value = "登录以后返回token")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody

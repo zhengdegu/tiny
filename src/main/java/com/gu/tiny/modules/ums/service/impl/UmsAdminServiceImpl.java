@@ -10,11 +10,13 @@ import com.gu.tiny.common.domain.AdminUserDetails;
 import com.gu.tiny.common.exception.Asserts;
 import com.gu.tiny.modules.ums.dto.UmsAdminParam;
 import com.gu.tiny.modules.ums.dto.UpdateAdminPasswordParam;
-import com.gu.tiny.modules.ums.mapper.UmsAdminLoginLogMapper;
 import com.gu.tiny.modules.ums.mapper.UmsAdminMapper;
 import com.gu.tiny.modules.ums.mapper.UmsResourceMapper;
 import com.gu.tiny.modules.ums.mapper.UmsRoleMapper;
-import com.gu.tiny.modules.ums.model.*;
+import com.gu.tiny.modules.ums.model.UmsAdmin;
+import com.gu.tiny.modules.ums.model.UmsAdminRoleRelation;
+import com.gu.tiny.modules.ums.model.UmsResource;
+import com.gu.tiny.modules.ums.model.UmsRole;
 import com.gu.tiny.modules.ums.service.UmsAdminCacheService;
 import com.gu.tiny.modules.ums.service.UmsAdminRoleRelationService;
 import com.gu.tiny.modules.ums.service.UmsAdminService;
@@ -31,10 +33,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,8 +49,7 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
-    private UmsAdminLoginLogMapper loginLogMapper;
+
     @Autowired
     private UmsAdminCacheService adminCacheService;
     @Autowired
@@ -115,32 +113,12 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
             token = jwtTokenUtil.generateToken(userDetails);
             //更新用户登录时间
             updateLoginTimeByUsername(username);
-            //记录用户登录信息
-            insertLoginLog(username);
         } catch (AuthenticationException e) {
             LOGGER.warn("登录异常:{}", e.getMessage());
         }
         return token;
     }
 
-    /**
-     * 添加登录记录
-     *
-     * @param username 用户名
-     */
-    private void insertLoginLog(String username) {
-        UmsAdmin admin = getAdminByUsername(username);
-        if (admin == null) {
-            return;
-        }
-        UmsAdminLoginLog loginLog = new UmsAdminLoginLog();
-        loginLog.setAdminId(admin.getId());
-        loginLog.setCreateTime(new Date());
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = attributes.getRequest();
-        loginLog.setIp(request.getRemoteAddr());
-        loginLogMapper.insert(loginLog);
-    }
 
     /**
      * 根据用户名修改登录时间

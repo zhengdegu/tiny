@@ -53,3 +53,6 @@ gu:
         - /admin/register
         - /admin/info
         - /admin/logout
+# IP 本地解析
+ip:
+  local-parsing: true
