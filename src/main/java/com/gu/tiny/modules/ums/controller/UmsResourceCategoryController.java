@@ -1,5 +1,6 @@
 package com.gu.tiny.modules.ums.controller;
 
+import com.gu.tiny.common.annotation.Log;
 import com.gu.tiny.common.api.CommonResult;
 import com.gu.tiny.modules.ums.model.UmsResourceCategory;
 import com.gu.tiny.modules.ums.service.UmsResourceCategoryService;
@@ -13,15 +14,19 @@ import java.util.List;
 
 /**
  * 后台资源分类管理Controller
- * Created by macro on 2020/2/5.
+ *
+ * @author macro
+ * @date 2020/2/5
  */
 @Controller
 @Api(tags = "UmsResourceCategoryController", description = "后台资源分类管理")
 @RequestMapping("/resourceCategory")
 public class UmsResourceCategoryController {
+
     @Autowired
     private UmsResourceCategoryService resourceCategoryService;
 
+    @Log("查询所有后台资源分类")
     @ApiOperation("查询所有后台资源分类")
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ResponseBody
@@ -30,6 +35,7 @@ public class UmsResourceCategoryController {
         return CommonResult.success(resourceList);
     }
 
+    @Log("添加后台资源分类")
     @ApiOperation("添加后台资源分类")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
@@ -42,6 +48,7 @@ public class UmsResourceCategoryController {
         }
     }
 
+    @Log("修改后台资源分类")
     @ApiOperation("修改后台资源分类")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -56,6 +63,7 @@ public class UmsResourceCategoryController {
         }
     }
 
+    @Log("根据ID删除后台资源")
     @ApiOperation("根据ID删除后台资源")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody

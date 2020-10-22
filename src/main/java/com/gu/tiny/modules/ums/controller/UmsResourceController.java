@@ -1,6 +1,7 @@
 package com.gu.tiny.modules.ums.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.gu.tiny.common.annotation.Log;
 import com.gu.tiny.common.api.CommonPage;
 import com.gu.tiny.common.api.CommonResult;
 import com.gu.tiny.modules.ums.model.UmsResource;
@@ -30,6 +31,7 @@ public class UmsResourceController {
     @Autowired
     private DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
 
+    @Log("添加后台资源")
     @ApiOperation("添加后台资源")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
@@ -43,6 +45,7 @@ public class UmsResourceController {
         }
     }
 
+    @Log("修改后台资源")
     @ApiOperation("修改后台资源")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -57,6 +60,7 @@ public class UmsResourceController {
         }
     }
 
+    @Log("根据ID获取资源详情")
     @ApiOperation("根据ID获取资源详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -65,6 +69,7 @@ public class UmsResourceController {
         return CommonResult.success(umsResource);
     }
 
+    @Log("根据ID删除资源详情")
     @ApiOperation("根据ID删除后台资源")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -78,6 +83,7 @@ public class UmsResourceController {
         }
     }
 
+    @Log("分页模糊查询后台资源")
     @ApiOperation("分页模糊查询后台资源")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody

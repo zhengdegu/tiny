@@ -44,6 +44,7 @@ public class UmsAdminController {
     @Autowired
     private UmsRoleService roleService;
 
+    @Log("用户注册")
     @ApiOperation(value = "用户注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
@@ -70,6 +71,7 @@ public class UmsAdminController {
         return CommonResult.success(tokenMap);
     }
 
+    @Log("刷新token")
     @ApiOperation(value = "刷新token")
     @RequestMapping(value = "/refreshToken", method = RequestMethod.GET)
     @ResponseBody
@@ -85,6 +87,7 @@ public class UmsAdminController {
         return CommonResult.success(tokenMap);
     }
 
+    @Log("获取当前登录用户信息")
     @ApiOperation(value = "获取当前登录用户信息")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     @ResponseBody
@@ -105,6 +108,7 @@ public class UmsAdminController {
         return CommonResult.success(data);
     }
 
+    @Log("登出")
     @ApiOperation(value = "登出功能")
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     @ResponseBody
@@ -123,6 +127,7 @@ public class UmsAdminController {
         return CommonResult.success(CommonPage.restPage(adminList));
     }
 
+    @Log("获取指定用户信息")
     @ApiOperation("获取指定用户信息")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -131,6 +136,7 @@ public class UmsAdminController {
         return CommonResult.success(admin);
     }
 
+    @Log("修改指定用户信息")
     @ApiOperation("修改指定用户信息")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -142,6 +148,7 @@ public class UmsAdminController {
         return CommonResult.failed();
     }
 
+    @Log("修改指定用户密码")
     @ApiOperation("修改指定用户密码")
     @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
     @ResponseBody
@@ -160,6 +167,7 @@ public class UmsAdminController {
         }
     }
 
+    @Log("删除指定用户信息")
     @ApiOperation("删除指定用户信息")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -171,6 +179,7 @@ public class UmsAdminController {
         return CommonResult.failed();
     }
 
+    @Log("修改想好状态")
     @ApiOperation("修改帐号状态")
     @RequestMapping(value = "/updateStatus/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -184,6 +193,7 @@ public class UmsAdminController {
         return CommonResult.failed();
     }
 
+    @Log("给用户分配角色")
     @ApiOperation("给用户分配角色")
     @RequestMapping(value = "/role/update", method = RequestMethod.POST)
     @ResponseBody
@@ -196,6 +206,7 @@ public class UmsAdminController {
         return CommonResult.failed();
     }
 
+    @Log("获取指定用户的角色")
     @ApiOperation("获取指定用户的角色")
     @RequestMapping(value = "/role/{adminId}", method = RequestMethod.GET)
     @ResponseBody

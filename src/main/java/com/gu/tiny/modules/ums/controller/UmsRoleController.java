@@ -1,6 +1,7 @@
 package com.gu.tiny.modules.ums.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.gu.tiny.common.annotation.Log;
 import com.gu.tiny.common.api.CommonPage;
 import com.gu.tiny.common.api.CommonResult;
 import com.gu.tiny.modules.ums.model.UmsMenu;
@@ -26,6 +27,7 @@ public class UmsRoleController {
     @Autowired
     private UmsRoleService roleService;
 
+    @Log("添加角色")
     @ApiOperation("添加角色")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
@@ -37,6 +39,7 @@ public class UmsRoleController {
         return CommonResult.failed();
     }
 
+    @Log("修改角色")
     @ApiOperation("修改角色")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -49,6 +52,7 @@ public class UmsRoleController {
         return CommonResult.failed();
     }
 
+    @Log("批量删除角色")
     @ApiOperation("批量删除角色")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
@@ -60,7 +64,7 @@ public class UmsRoleController {
         return CommonResult.failed();
     }
 
-
+    @Log("获取所有角色")
     @ApiOperation("获取所有角色")
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ResponseBody
@@ -69,6 +73,7 @@ public class UmsRoleController {
         return CommonResult.success(roleList);
     }
 
+    @Log("根据角色名称分页获取角色列表")
     @ApiOperation("根据角色名称分页获取角色列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
@@ -79,6 +84,7 @@ public class UmsRoleController {
         return CommonResult.success(CommonPage.restPage(roleList));
     }
 
+    @Log("修改角色状态")
     @ApiOperation("修改角色状态")
     @RequestMapping(value = "/updateStatus/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -93,6 +99,7 @@ public class UmsRoleController {
         return CommonResult.failed();
     }
 
+    @Log("获取角色相关菜单")
     @ApiOperation("获取角色相关菜单")
     @RequestMapping(value = "/listMenu/{roleId}", method = RequestMethod.GET)
     @ResponseBody
@@ -101,6 +108,7 @@ public class UmsRoleController {
         return CommonResult.success(roleList);
     }
 
+    @Log("获取角色相关资源")
     @ApiOperation("获取角色相关资源")
     @RequestMapping(value = "/listResource/{roleId}", method = RequestMethod.GET)
     @ResponseBody
@@ -109,6 +117,7 @@ public class UmsRoleController {
         return CommonResult.success(roleList);
     }
 
+    @Log("给角色分配菜单")
     @ApiOperation("给角色分配菜单")
     @RequestMapping(value = "/allocMenu", method = RequestMethod.POST)
     @ResponseBody
@@ -117,6 +126,7 @@ public class UmsRoleController {
         return CommonResult.success(count);
     }
 
+    @Log("给角色分配资源")
     @ApiOperation("给角色分配资源")
     @RequestMapping(value = "/allocResource", method = RequestMethod.POST)
     @ResponseBody

@@ -1,6 +1,7 @@
 package com.gu.tiny.modules.ums.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.gu.tiny.common.annotation.Log;
 import com.gu.tiny.common.api.CommonPage;
 import com.gu.tiny.common.api.CommonResult;
 import com.gu.tiny.modules.ums.dto.UmsMenuNode;
@@ -16,7 +17,9 @@ import java.util.List;
 
 /**
  * 后台菜单管理Controller
- * Created by macro on 2020/2/4.
+ *
+ * @author macro
+ * @date 2020/2/4
  */
 @Controller
 @Api(tags = "UmsMenuController", description = "后台菜单管理")
@@ -26,6 +29,7 @@ public class UmsMenuController {
     @Autowired
     private UmsMenuService menuService;
 
+    @Log("添加后台菜单")
     @ApiOperation("添加后台菜单")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
@@ -38,6 +42,7 @@ public class UmsMenuController {
         }
     }
 
+    @Log("修改后台菜单")
     @ApiOperation("修改后台菜单")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -51,6 +56,7 @@ public class UmsMenuController {
         }
     }
 
+    @Log("根据ID获取菜单详情")
     @ApiOperation("根据ID获取菜单详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -59,6 +65,7 @@ public class UmsMenuController {
         return CommonResult.success(umsMenu);
     }
 
+    @Log("根据ID删除菜单详情")
     @ApiOperation("根据ID删除后台菜单")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -71,6 +78,7 @@ public class UmsMenuController {
         }
     }
 
+    @Log("分页查询后台菜单")
     @ApiOperation("分页查询后台菜单")
     @RequestMapping(value = "/list/{parentId}", method = RequestMethod.GET)
     @ResponseBody
@@ -81,6 +89,7 @@ public class UmsMenuController {
         return CommonResult.success(CommonPage.restPage(menuList));
     }
 
+    @Log("树形结构返回所有菜单列表")
     @ApiOperation("树形结构返回所有菜单列表")
     @RequestMapping(value = "/treeList", method = RequestMethod.GET)
     @ResponseBody
@@ -89,6 +98,7 @@ public class UmsMenuController {
         return CommonResult.success(list);
     }
 
+    @Log("修改菜单显示状态")
     @ApiOperation("修改菜单显示状态")
     @RequestMapping(value = "/updateHidden/{id}", method = RequestMethod.POST)
     @ResponseBody

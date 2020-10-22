@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gu.tiny.modules.ums.mapper.UmsLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gu.tiny.modules.ums.model.UmsLog">
+        <id column="id" property="id" />
+        <result column="description" property="description" />
+        <result column="log_type" property="logType" />
+        <result column="method" property="method" />
+        <result column="params" property="params" />
+        <result column="request_ip" property="requestIp" />
+        <result column="time" property="time" />
+        <result column="username" property="username" />
+        <result column="address" property="address" />
+        <result column="browser" property="browser" />
+        <result column="exception_detail" property="exceptionDetail" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+</mapper>
