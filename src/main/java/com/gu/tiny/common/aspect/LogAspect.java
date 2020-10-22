@@ -68,7 +68,7 @@ public class LogAspect {
         UmsLog log = new UmsLog("INFO", System.currentTimeMillis() - currentTime.get());
         currentTime.remove();
         HttpServletRequest request = RequestHolder.getHttpServletRequest();
-        umsLogService.save(getUsername(), StringUtils.getBrowser(request), StringUtils.getIp(request), joinPoint, log);
+        umsLogService.save(getUsername(), StringUtils.getRequestUrl(request),StringUtils.getBrowser(request), StringUtils.getIp(request), joinPoint, log);
         return result;
     }
 
@@ -84,7 +84,7 @@ public class LogAspect {
         currentTime.remove();
         log.setExceptionDetail(ThrowableUtil.getStackTrace(e));
         HttpServletRequest request = RequestHolder.getHttpServletRequest();
-        umsLogService.save(getUsername(), StringUtils.getBrowser(request), StringUtils.getIp(request), (ProceedingJoinPoint) joinPoint, log);
+        umsLogService.save(getUsername(), StringUtils.getRequestUrl(request),StringUtils.getBrowser(request), StringUtils.getIp(request), (ProceedingJoinPoint) joinPoint, log);
     }
 
     public String getUsername() {

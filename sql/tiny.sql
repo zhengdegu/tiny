@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
--- 主机:                           123.7.182.34
--- 服务器版本:                        5.7.31-0ubuntu0.18.04.1 - (Ubuntu)
+-- 主机:                           10.1.2.4
+-- 服务器版本:                        8.0.21 - MySQL Community Server - GPL
 -- 服务器操作系统:                      Linux
 -- HeidiSQL 版本:                  11.0.0.5919
 -- --------------------------------------------------------
@@ -14,13 +14,13 @@
 
 -- 导出 tiny 的数据库结构
 DROP DATABASE IF EXISTS `tiny`;
-CREATE DATABASE IF NOT EXISTS `tiny` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE IF NOT EXISTS `tiny` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `tiny`;
 
 -- 导出  表 tiny.ums_admin 结构
 DROP TABLE IF EXISTS `ums_admin`;
 CREATE TABLE IF NOT EXISTS `ums_admin` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `username` varchar(64) DEFAULT NULL,
   `password` varchar(64) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL COMMENT '邮箱',
@@ -28,80 +28,25 @@ CREATE TABLE IF NOT EXISTS `ums_admin` (
   `note` varchar(500) DEFAULT NULL COMMENT '备注信息',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
-  `status` int(1) DEFAULT '1' COMMENT '帐号启用状态：0->禁用；1->启用',
+  `status` int DEFAULT '1' COMMENT '帐号启用状态：0->禁用；1->启用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='后台用户表';
 
--- 正在导出表  tiny.ums_admin 的数据：~3 rows (大约)
+-- 正在导出表  tiny.ums_admin 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `ums_admin` DISABLE KEYS */;
 INSERT INTO `ums_admin` (`id`, `username`, `password`, `email`, `nick_name`, `note`, `create_time`, `login_time`, `status`) VALUES
 	(1, 'test', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'test@qq.com', '测试账号', NULL, '2018-09-29 13:55:30', '2018-09-29 13:55:39', 1),
-	(3, 'admin', '$2a$10$WtitVo8mHoBPPlF6W6Vf5.Z14gBzed0/os6jXkZ8yLbwZu6iDl8YG', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', '2019-04-20 12:45:16', 1),
-	(16, 'test1', '$2a$10$hWsGqLq.OZloHYXDZgp2SevtkhSkaHxhc3bGfFUSKMk5rBkUMw7Ea', '1058680083@qq.com', 'Zhende Gu', NULL, '2020-10-20 14:32:58', '2020-10-20 14:38:17', 1);
+	(3, 'admin', '$2a$10$WtitVo8mHoBPPlF6W6Vf5.Z14gBzed0/os6jXkZ8yLbwZu6iDl8YG', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', '2020-10-22 16:28:40', 1);
 /*!40000 ALTER TABLE `ums_admin` ENABLE KEYS */;
-
--- 导出  表 tiny.ums_admin_login_log 结构
-DROP TABLE IF EXISTS `ums_admin_login_log`;
-CREATE TABLE IF NOT EXISTS `ums_admin_login_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `admin_id` bigint(20) DEFAULT NULL,
-  `create_time` datetime DEFAULT NULL,
-  `ip` varchar(64) DEFAULT NULL,
-  `address` varchar(100) DEFAULT NULL,
-  `user_agent` varchar(100) DEFAULT NULL COMMENT '浏览器登录类型',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=322 DEFAULT CHARSET=utf8 COMMENT='后台用户登录日志表';
-
--- 正在导出表  tiny.ums_admin_login_log 的数据：~37 rows (大约)
-/*!40000 ALTER TABLE `ums_admin_login_log` DISABLE KEYS */;
-INSERT INTO `ums_admin_login_log` (`id`, `admin_id`, `create_time`, `ip`, `address`, `user_agent`) VALUES
-	(285, 3, '2020-08-24 14:05:21', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(286, 10, '2020-08-24 14:05:39', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(287, 3, '2020-10-14 12:06:36', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(288, 3, '2020-10-14 12:06:59', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(289, 3, '2020-10-14 12:38:03', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(290, 3, '2020-10-17 16:40:32', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(291, 3, '2020-10-17 16:45:17', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(292, 3, '2020-10-17 16:45:18', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(293, 3, '2020-10-17 16:46:48', '127.0.0.1', NULL, NULL),
-	(294, 3, '2020-10-17 16:50:53', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(295, 3, '2020-10-17 16:52:19', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(296, 3, '2020-10-17 16:53:58', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(297, 3, '2020-10-17 17:01:19', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(298, 3, '2020-10-17 17:02:24', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(299, 3, '2020-10-17 17:08:09', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(300, 3, '2020-10-17 17:09:11', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(301, 3, '2020-10-17 17:12:33', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(302, 3, '2020-10-18 18:41:15', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(303, 3, '2020-10-18 19:52:56', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(304, 3, '2020-10-20 10:59:55', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(305, 3, '2020-10-20 12:21:49', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(306, 3, '2020-10-20 12:39:14', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(307, 3, '2020-10-20 13:16:31', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(308, 3, '2020-10-20 13:27:07', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(309, 3, '2020-10-20 13:54:10', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(310, 3, '2020-10-20 14:07:14', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(311, 3, '2020-10-20 14:17:57', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(312, 3, '2020-10-20 14:31:16', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(313, 16, '2020-10-20 14:34:15', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(314, 16, '2020-10-20 14:45:32', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(315, 16, '2020-10-20 14:57:59', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(316, 16, '2020-10-20 15:20:55', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(317, 16, '2020-10-20 15:23:41', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(318, 3, '2020-10-20 16:25:17', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(319, 16, '2020-10-20 16:25:17', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(320, 3, '2020-10-20 16:25:26', '0:0:0:0:0:0:0:1', NULL, NULL),
-	(321, 3, '2020-10-20 17:02:23', '0:0:0:0:0:0:0:1', NULL, NULL);
-/*!40000 ALTER TABLE `ums_admin_login_log` ENABLE KEYS */;
 
 -- 导出  表 tiny.ums_admin_role_relation 结构
 DROP TABLE IF EXISTS `ums_admin_role_relation`;
 CREATE TABLE IF NOT EXISTS `ums_admin_role_relation` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `admin_id` bigint(20) DEFAULT NULL,
-  `role_id` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `admin_id` bigint DEFAULT NULL,
+  `role_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='后台用户和角色关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COMMENT='后台用户和角色关系表';
 
 -- 正在导出表  tiny.ums_admin_role_relation 的数据：~10 rows (大约)
 /*!40000 ALTER TABLE `ums_admin_role_relation` DISABLE KEYS */;
@@ -109,27 +54,56 @@ INSERT INTO `ums_admin_role_relation` (`id`, `admin_id`, `role_id`) VALUES
 	(26, 3, 5),
 	(27, 6, 1),
 	(28, 7, 2),
-	(29, 1, 5),
 	(30, 4, 5),
 	(31, 8, 5),
 	(34, 12, 6),
 	(38, 13, 5),
 	(39, 10, 8),
-	(40, 16, 5);
+	(40, 16, 5),
+	(41, 1, 5);
 /*!40000 ALTER TABLE `ums_admin_role_relation` ENABLE KEYS */;
+
+-- 导出  表 tiny.ums_log 结构
+DROP TABLE IF EXISTS `ums_log`;
+CREATE TABLE IF NOT EXISTS `ums_log` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `log_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `method` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `params` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci,
+  `request_ip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `time` bigint DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `browser` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `exception_detail` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci,
+  `create_time` datetime DEFAULT NULL,
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `log_create_time_index` (`create_time`) USING BTREE,
+  KEY `inx_log_type` (`log_type`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2884 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='系统日志';
+
+-- 正在导出表  tiny.ums_log 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `ums_log` DISABLE KEYS */;
+INSERT INTO `ums_log` (`id`, `description`, `log_type`, `method`, `params`, `request_ip`, `time`, `username`, `address`, `browser`, `exception_detail`, `create_time`, `url`) VALUES
+	(2881, '获取所有角色', 'INFO', 'com.gu.tiny.modules.ums.controller.UmsRoleController.listAll()', '{ }', '0:0:0:0:0:0:0:1', 27, 'admin', '内网IP', 'Chrome 8', NULL, '2020-10-22 16:35:08', '/role/listAll'),
+	(2882, '获取指定用户的角色', 'INFO', 'com.gu.tiny.modules.ums.controller.UmsAdminController.getRoleList()', '{1  }', '0:0:0:0:0:0:0:1', 32, 'admin', '内网IP', 'Chrome 8', NULL, '2020-10-22 16:35:26', '/admin/role/1'),
+	(2883, '给用户分配角色', 'INFO', 'com.gu.tiny.modules.ums.controller.UmsAdminController.updateRole()', '{1 [5]  }', '0:0:0:0:0:0:0:1', 211, 'admin', '内网IP', 'Chrome 8', NULL, '2020-10-22 16:35:29', '/admin/role/update');
+/*!40000 ALTER TABLE `ums_log` ENABLE KEYS */;
 
 -- 导出  表 tiny.ums_menu 结构
 DROP TABLE IF EXISTS `ums_menu`;
 CREATE TABLE IF NOT EXISTS `ums_menu` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `parent_id` bigint(20) DEFAULT NULL COMMENT '父级ID',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `parent_id` bigint DEFAULT NULL COMMENT '父级ID',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `title` varchar(100) DEFAULT NULL COMMENT '菜单名称',
-  `level` int(4) DEFAULT NULL COMMENT '菜单级数',
-  `sort` int(4) DEFAULT NULL COMMENT '菜单排序',
+  `level` int DEFAULT NULL COMMENT '菜单级数',
+  `sort` int DEFAULT NULL COMMENT '菜单排序',
   `name` varchar(100) DEFAULT NULL COMMENT '前端名称',
   `icon` varchar(200) DEFAULT NULL COMMENT '前端图标',
-  `hidden` int(1) DEFAULT NULL COMMENT '前端隐藏',
+  `hidden` int DEFAULT NULL COMMENT '前端隐藏',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='后台菜单表';
 
@@ -162,12 +136,12 @@ INSERT INTO `ums_menu` (`id`, `parent_id`, `create_time`, `title`, `level`, `sor
 -- 导出  表 tiny.ums_resource 结构
 DROP TABLE IF EXISTS `ums_resource`;
 CREATE TABLE IF NOT EXISTS `ums_resource` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `name` varchar(200) DEFAULT NULL COMMENT '资源名称',
   `url` varchar(200) DEFAULT NULL COMMENT '资源URL',
   `description` varchar(500) DEFAULT NULL COMMENT '描述',
-  `category_id` bigint(20) DEFAULT NULL COMMENT '资源分类ID',
+  `category_id` bigint DEFAULT NULL COMMENT '资源分类ID',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='后台资源表';
 
@@ -184,14 +158,14 @@ INSERT INTO `ums_resource` (`id`, `create_time`, `name`, `url`, `description`, `
 -- 导出  表 tiny.ums_resource_category 结构
 DROP TABLE IF EXISTS `ums_resource_category`;
 CREATE TABLE IF NOT EXISTS `ums_resource_category` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `name` varchar(200) DEFAULT NULL COMMENT '分类名称',
-  `sort` int(4) DEFAULT NULL COMMENT '排序',
+  `sort` int DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='资源分类表';
 
--- 正在导出表  tiny.ums_resource_category 的数据：~1 rows (大约)
+-- 正在导出表  tiny.ums_resource_category 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `ums_resource_category` DISABLE KEYS */;
 INSERT INTO `ums_resource_category` (`id`, `create_time`, `name`, `sort`) VALUES
 	(4, '2020-02-05 10:23:04', '权限模块', 0);
@@ -200,13 +174,13 @@ INSERT INTO `ums_resource_category` (`id`, `create_time`, `name`, `sort`) VALUES
 -- 导出  表 tiny.ums_role 结构
 DROP TABLE IF EXISTS `ums_role`;
 CREATE TABLE IF NOT EXISTS `ums_role` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL COMMENT '名称',
   `description` varchar(500) DEFAULT NULL COMMENT '描述',
-  `admin_count` int(11) DEFAULT NULL COMMENT '后台用户数量',
+  `admin_count` int DEFAULT NULL COMMENT '后台用户数量',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `status` int(1) DEFAULT '1' COMMENT '启用状态：0->禁用；1->启用',
-  `sort` int(11) DEFAULT '0',
+  `status` int DEFAULT '1' COMMENT '启用状态：0->禁用；1->启用',
+  `sort` int DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='后台用户角色表';
 
@@ -220,9 +194,9 @@ INSERT INTO `ums_role` (`id`, `name`, `description`, `admin_count`, `create_time
 -- 导出  表 tiny.ums_role_menu_relation 结构
 DROP TABLE IF EXISTS `ums_role_menu_relation`;
 CREATE TABLE IF NOT EXISTS `ums_role_menu_relation` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
-  `menu_id` bigint(20) DEFAULT NULL COMMENT '菜单ID',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `role_id` bigint DEFAULT NULL COMMENT '角色ID',
+  `menu_id` bigint DEFAULT NULL COMMENT '菜单ID',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8 COMMENT='后台角色菜单关系表';
 
@@ -284,9 +258,9 @@ INSERT INTO `ums_role_menu_relation` (`id`, `role_id`, `menu_id`) VALUES
 -- 导出  表 tiny.ums_role_resource_relation 结构
 DROP TABLE IF EXISTS `ums_role_resource_relation`;
 CREATE TABLE IF NOT EXISTS `ums_role_resource_relation` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
-  `resource_id` bigint(20) DEFAULT NULL COMMENT '资源ID',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `role_id` bigint DEFAULT NULL COMMENT '角色ID',
+  `resource_id` bigint DEFAULT NULL COMMENT '资源ID',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=226 DEFAULT CHARSET=utf8 COMMENT='后台角色资源关系表';
 

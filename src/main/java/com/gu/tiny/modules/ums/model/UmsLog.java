@@ -44,6 +44,7 @@ public class UmsLog implements Serializable {
 
     private String username;
 
+    private  String url;
     private String address;
 
     private String browser;

@@ -12,6 +12,7 @@
         <result column="request_ip" property="requestIp" />
         <result column="time" property="time" />
         <result column="username" property="username" />
+        <result column="url" property="url"/>
         <result column="address" property="address" />
         <result column="browser" property="browser" />
         <result column="exception_detail" property="exceptionDetail" />

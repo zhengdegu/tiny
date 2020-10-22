@@ -18,12 +18,13 @@ public interface UmsLogService extends IService<UmsLog> {
     /**
      * 保存操作日志
      * @param username 用户名
+     * @param  url url
      * @param browser 浏览器
      * @param ip  ip地址
      * @param joinPoint   参数
      * @param log 数据
      */
-    void save(String username, String browser, String ip, ProceedingJoinPoint joinPoint, UmsLog log);
+    void save(String username, String url,String browser, String ip, ProceedingJoinPoint joinPoint, UmsLog log);
 
 
 }

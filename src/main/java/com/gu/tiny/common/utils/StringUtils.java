@@ -227,6 +227,10 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         return browser.getName();
     }
 
+    public static String getRequestUrl(HttpServletRequest request) {
+        return request.getRequestURI();
+    }
+
     /**
      * 获得当天是周几
      */

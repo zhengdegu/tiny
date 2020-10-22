@@ -40,7 +40,7 @@ public class UmsLogServiceImpl extends ServiceImpl<UmsLogMapper, UmsLog> impleme
     private  UmsLogMapper umsLogMapper;
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(String username, String browser, String ip, ProceedingJoinPoint joinPoint, UmsLog umsLog) {
+    public void save(String username,String url, String browser, String ip, ProceedingJoinPoint joinPoint, UmsLog umsLog) {
 
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
@@ -74,6 +74,7 @@ public class UmsLogServiceImpl extends ServiceImpl<UmsLogMapper, UmsLog> impleme
         umsLog.setAddress(StringUtils.getCityInfo(umsLog.getRequestIp()));
         umsLog.setMethod(methodName);
         umsLog.setUsername(username);
+        umsLog.setUrl(url);
         umsLog.setParams(params.toString() + " }");
         umsLog.setBrowser(browser);
         umsLog.setCreateTime(new Date());
