@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gu.tiny.common.annotation.Log;
 import com.gu.tiny.common.api.CommonPage;
 import com.gu.tiny.common.api.CommonResult;
+import com.gu.tiny.common.properties.RsaProperties;
+import com.gu.tiny.common.utils.RsaUtils;
 import com.gu.tiny.modules.ums.dto.UmsAdminLoginParam;
 import com.gu.tiny.modules.ums.dto.UmsAdminParam;
 import com.gu.tiny.modules.ums.dto.UpdateAdminPasswordParam;
@@ -60,8 +62,10 @@ public class UmsAdminController {
     @ApiOperation(value = "登录以后返回token")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult login(@Validated @RequestBody UmsAdminLoginParam umsAdminLoginParam) {
-        String token = adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
+    public CommonResult login(@Validated @RequestBody UmsAdminLoginParam umsAdminLoginParam) throws Exception {
+        // 密码解密
+        String password = RsaUtils.decryptByPrivateKey(RsaProperties.privateKey, umsAdminLoginParam.getPassword());
+        String token = adminService.login(umsAdminLoginParam.getUsername(), password);
         if (token == null) {
             return CommonResult.validateFailed("用户名或密码错误");
         }

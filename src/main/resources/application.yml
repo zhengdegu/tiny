@@ -32,7 +32,7 @@ gu:
 
   jwt:
     header: Authorization #JWT存储的请求头
-    base64-secret: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMI
+    base64-secret: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDAAwXPKM9kec3p1nSEyXPRQYKPpfZtdnMyYh1e7HGALtISW3pCsZNhRM9w1cd+FQjy74huGo1CgunUNvqhuBrfyqV1FonfRoTtIP0b/iRvuzh+HoGPhoyV4/OzGt39FC9ZiDg1UrY7YdGt4hr17iDUuO5Xcv6d2Plsd0H4TqoldwIDAQAB
     token-start-with: 'Bearer '
     token-validity-in-seconds: 604800 #JWT的超期限时间(60*60*24*7)
   secure:
@@ -56,3 +56,6 @@ gu:
 # IP 本地解析
 ip:
   local-parsing: true
+#密码加密传输，前端公钥加密，后端私钥解密
+rsa:
+  private_key: MIIBUwIBADANBgkqhkiG9w0BAQEFAASCAT0wggE5AgEAAkEA0vfvyTdGJkdbHkB8mp0f3FE0GYP3AYPaJF7jUd1M0XxFSE2ceK3k2kw20YvQ09NJKk+OMjWQl9WitG9pB6tSCQIDAQABAkA2SimBrWC2/wvauBuYqjCFwLvYiRYqZKThUS3MZlebXJiLB+Ue/gUifAAKIg1avttUZsHBHrop4qfJCwAI0+YRAiEA+W3NK/RaXtnRqmoUUkb59zsZUBLpvZgQPfj1MhyHDz0CIQDYhsAhPJ3mgS64NbUZmGWuuNKp5coY2GIj/zYDMJp6vQIgUueLFXv/eZ1ekgz2Oi67MNCk5jeTF2BurZqNLR3MSmUCIFT3Q6uHMtsB9Eha4u7hS31tj1UWE+D+ADzp59MGnoftAiBeHT7gDMuqeJHPL4b+kC+gzV4FGTfhR9q3tTbklZkD2A==
