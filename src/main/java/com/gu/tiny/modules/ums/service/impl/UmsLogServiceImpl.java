@@ -1,11 +1,14 @@
 package com.gu.tiny.modules.ums.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gu.tiny.common.annotation.Log;
 import com.gu.tiny.common.utils.StringUtils;
+import com.gu.tiny.modules.ums.model.UmsAdmin;
 import com.gu.tiny.modules.ums.model.UmsLog;
 import com.gu.tiny.modules.ums.mapper.UmsLogMapper;
 import com.gu.tiny.modules.ums.model.UmsMenu;
@@ -81,6 +84,16 @@ public class UmsLogServiceImpl extends ServiceImpl<UmsLogMapper, UmsLog> impleme
         umsLogMapper.insert(umsLog);
     }
 
+    @Override
+    public Page<UmsLog> list(String keyword, Integer pageSize, Integer pageNum) {
+        Page<UmsLog> page = new Page<>(pageNum, pageSize);
+        QueryWrapper<UmsLog> wrapper = new QueryWrapper<>();
+        LambdaQueryWrapper<UmsLog> lambda = wrapper.lambda();
+        if (StrUtil.isNotEmpty(keyword)) {
+            lambda.like(UmsLog::getUsername, keyword);
+        }
+        return page(page, wrapper);
+    }
 
 
 }

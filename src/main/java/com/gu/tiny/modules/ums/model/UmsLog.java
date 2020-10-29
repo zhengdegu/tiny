@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * <p>
@@ -18,6 +19,7 @@ import lombok.EqualsAndHashCode;
  * @author FastG
  * @since 2020-10-22
  */
+@NoArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("ums_log")
