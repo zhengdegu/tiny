@@ -28,6 +28,10 @@ public class ApiException extends RuntimeException {
         super(message, cause);
     }
 
+    public  ApiException(IErrorCode errorCode,String message){
+        super(message);
+
+    }
     public IErrorCode getErrorCode() {
         return errorCode;
     }

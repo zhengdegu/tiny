@@ -6,14 +6,15 @@ import cn.hutool.json.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.gu.tiny.common.annotation.Log;
-import com.gu.tiny.common.utils.StringUtils;
-import com.gu.tiny.modules.ums.model.UmsAdmin;
-import com.gu.tiny.modules.ums.model.UmsLog;
-import com.gu.tiny.modules.ums.mapper.UmsLogMapper;
-import com.gu.tiny.modules.ums.model.UmsMenu;
-import com.gu.tiny.modules.ums.service.UmsLogService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.gu.tiny.common.annotation.Log;
+import com.gu.tiny.common.api.ResultCode;
+import com.gu.tiny.common.exception.ApiException;
+import com.gu.tiny.common.utils.StringUtils;
+import com.gu.tiny.modules.ums.mapper.UmsLogMapper;
+import com.gu.tiny.modules.ums.model.UmsLog;
+import com.gu.tiny.modules.ums.service.UmsLogService;
+import com.gu.tiny.security.util.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -89,8 +90,19 @@ public class UmsLogServiceImpl extends ServiceImpl<UmsLogMapper, UmsLog> impleme
         Page<UmsLog> page = new Page<>(pageNum, pageSize);
         QueryWrapper<UmsLog> wrapper = new QueryWrapper<>();
         LambdaQueryWrapper<UmsLog> lambda = wrapper.lambda();
+        String currentUsername = SecurityUtils.getCurrentUsername();
         if (StrUtil.isNotEmpty(keyword)) {
-            lambda.like(UmsLog::getUsername, keyword);
+
+            if (StringUtils.equals(currentUsername, keyword)) {
+                lambda.like(UmsLog::getUsername, keyword);
+            } else if (StringUtils.equals("admin", currentUsername)) {
+                lambda.like(UmsLog::getUsername, keyword);
+            } else {
+                //没有相关权限
+                throw new ApiException(ResultCode.FORBIDDEN);
+            }
+        } else {
+            lambda.like(UmsLog::getUsername, currentUsername);
         }
         return page(page, wrapper);
     }

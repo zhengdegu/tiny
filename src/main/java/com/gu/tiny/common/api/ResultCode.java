@@ -22,6 +22,7 @@ public enum ResultCode implements IErrorCode {
      * 参数校验失败
      */
     VALIDATE_FAILED(404, "参数检验失败"),
+
     /**
      * 失败
      */
